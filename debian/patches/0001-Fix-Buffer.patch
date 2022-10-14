@@ -1,0 +1,23 @@
+From e353ce00fad550871548ec6aa1e4c3d7e86e7ede Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Bastien=20Roucari=C3=A8s?= <rouca@debian.org>
+Date: Tue, 1 Jan 2019 23:03:53 +0100
+Subject: Fix Buffer()
+
+Forwarded: Not-needed
+---
+ test/index.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/test/index.js b/test/index.js
+index cc96545..dfba3ee 100644
+--- a/test/index.js
++++ b/test/index.js
+@@ -5,7 +5,7 @@ var vectors = require('hash-test-vectors')
+ var MD5 = require('../')
+ 
+ vectors.forEach(function (vector, i) {
+-  var input = new Buffer(vector.input, 'base64')
++  var input = new Buffer.from(vector.input, 'base64')
+ 
+   test('vector #' + (i + 1) + ' with .update', function (t) {
+     t.same(new MD5().update(input).digest('hex'), vector.md5)
